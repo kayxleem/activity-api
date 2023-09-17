@@ -29,3 +29,4 @@ Route::prefix('user')->middleware('auth:sanctum')->group(function () {
 Route::post('user/register', [Usercontroller::class,'register'])->name('user.register');
 
 Route::post('user/login', [Usercontroller::class,'login'])->name('user.login');
+Route::post('user/logout', [Usercontroller::class,'logout'])->name('user.logout');

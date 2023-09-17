@@ -8,6 +8,7 @@ use App\Models\UserActivity;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
@@ -39,6 +40,12 @@ class Usercontroller extends Controller
         }
         $token = $user->createToken('api');
         return response(['token' => $token->plainTextToken]);
+    }
+
+    public function logout()
+    {
+        Auth::guard('user')->logout();
+        return response()->json(['status_code' => Response::HTTP_NO_CONTENT, 'status' => 'success', 'message' => 'Logged out']);
     }
 
 
