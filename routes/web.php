@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminActivityController;
-use App\Http\Controllers\Admin\Admincontroller;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\Admincontroller;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('/admin', [Admincontroller::class, 'index'])->name('admin.dashboard');
-// Route::get('/admin/login', [Admincontroller::class, 'login'])->name('admin.show.login');
-// Route::post('/admin/login', [Admincontroller::class, 'processLogin'])->name('admin.login');
+
 
 Route::prefix('/admin')->group(function ($route) {
     //$route->get('/', Admincontroller::class);
@@ -45,6 +44,8 @@ Route::prefix('/admin')->group(function ($route) {
     Route::middleware('admin')->group(function(){
         //Route::get('/dashboard',  [Admincontroller::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/dashboard',  [AdminActivityController::class, 'getAllActivities'])->name('admin.dashboard');
+        Route::get('/users',  [AdminUserController::class, 'users'])->name('admin.users.show');
+
         Route::get('/createActivity',  [AdminActivityController::class, 'createActivityView'])->name('admin.create.activity.view');
         //Route::get('/activities',  [AdminActivityController::class, 'getAllActivities'])->name('admin.activities')->middleware('admin');
     });
