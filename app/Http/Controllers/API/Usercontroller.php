@@ -44,7 +44,7 @@ class Usercontroller extends Controller
 
     public function logout()
     {
-        Auth::guard('user')->logout();
+        Auth::guard('web')->logout();
         return response()->json(['status_code' => Response::HTTP_NO_CONTENT, 'status' => 'success', 'message' => 'Logged out']);
     }
 
