@@ -41,7 +41,7 @@
                         @endforeach
                     </div>
                 @endif
-                @if ($status)
+                @if (isset($status))
 
                 <div class="alert alert-success">
 

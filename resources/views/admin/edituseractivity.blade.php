@@ -13,7 +13,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit Activity</li>
+              <li class="breadcrumb-item active">Edit Activity for user {{$user->name}}</li>
             </ol>
           </div>
         </div>
@@ -29,7 +29,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Activity</h3>
+                <h3 class="card-title">Edit Activity for user {{$user->name}}</h3>
               </div>
               <!-- /.card-header -->
               @if ($errors->any())
@@ -84,7 +84,7 @@
                   </div>
                 @endif
               <!-- form start -->
-              <form method="post" action="{{ route('admin.activity.edit',$activity->id ) }}" enctype="multipart/form-data">@csrf
+              <form method="post" action="{{ route('admin.user.activity.edit') }}" enctype="multipart/form-data">@csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
@@ -98,17 +98,20 @@
                   <div class="form-group">
                     <label>Date: {{$activity->activity_date}}</label>
                       <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="activity_date" value="{{$activity->activity_date}}"/>
+                          <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="activity_date" placeholder="{{$activity->activity_date}}"/>
                           <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker" aria-placeholder="{{$activity->activity_date}}">
                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
                       </div>
                   </div>
                   <div class="form-group">
+                    <img alt="image"  src="{{$activity->image}}" width="100px">
+                        <br>
                     <label for="exampleInputFile">image</label>
-
+                    <input type="hidden" value="{{$user->id}}" name="user_id">
+                    <input type="hidden" value="{{$activity->id}}" name="activity_id">
                     <div class="input-group">
-                        <img alt="image"  src="{{$activity->image}}" width="100px">
+
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                         <label class="custom-file-label" for="exampleInputimage" >Change</label>

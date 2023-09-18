@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserActivityController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\Admincontroller;
@@ -46,12 +47,20 @@ Route::prefix('/admin')->group(function ($route) {
         Route::get('/dashboard',  [AdminActivityController::class, 'getAllActivities'])->name('admin.dashboard');
 
         Route::get('/users',  [AdminUserController::class, 'users'])->name('admin.users.show');
-
+        //activity routes
         Route::get('/addActivity',  [AdminActivityController::class, 'addActivityView'])->name('admin.create.activity.view');
         Route::post('/addActivity',  [AdminActivityController::class, 'addActivity'])->name('admin.add.activity');
         Route::get('/editActivity/{id}',  [AdminActivityController::class, 'editActivityView'])->name('admin.edit.activity.view');
         Route::post('/editActivity/{id}',  [AdminActivityController::class, 'editActivity'])->name('admin.activity.edit');
         Route::get('/deleteActivity/{id}',  [AdminActivityController::class, 'destroy'])->name('admin.activity.delete');
+
+        //user activity routes
+        Route::get('/userActivities/{user_id}',  [AdminUserActivityController::class, 'getUserActivity'])->name('admin.user.activities.view');
+        Route::get('/editUserActivity',  [AdminUserActivityController::class, 'editUserActivityView'])->name('admin.user.activity.view');
+        Route::post('/editUserActivity',  [AdminUserActivityController::class, 'editUserActivity'])->name('admin.user.activity.edit');
+        Route::get('/addUserActivityView',  [AdminUserActivityController::class, 'addUserActivityView'])->name('admin.user.add.activity.view');
+        Route::get('/addUserActivity/{user_id}',  [AdminUserActivityController::class, 'getUserActivity'])->name('admin.user.add.activity');
+
         //Route::get('/activities',  [AdminActivityController::class, 'getAllActivities'])->name('admin.activities')->middleware('admin');
     });
 

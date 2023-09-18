@@ -91,21 +91,21 @@
                             <span class="badge badge-success">Success</span>
                         </td> --}}
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+                            <a class="btn btn-primary btn-sm" href="{{route('admin.user.activities.view', $item->id)}}">
                                 <i class="fas fa-folder">
                                 </i>
-                                View
+                                View User Activiies
                             </a>
-                            <a class="btn btn-info btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+                            {{-- <a class="btn btn-info btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
-                            </a>
-                            <a class="btn btn-danger btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+                            </a> --}}
+                            {{-- <a class="btn btn-danger btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
-                            </a>
+                            </a> --}}
                         </td>
                     </tr>
 

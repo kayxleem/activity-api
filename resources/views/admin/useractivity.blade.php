@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Activities</h1>
+            <h1>Activities for {{ $user->name }}</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Activities</li>
+              <li class="breadcrumb-item active">Activities for {{ $user->name }}</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
         <!-- Default box -->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Activities</h3>
+            <h3 class="card-title">Activities for {{ $user->name }} , {{ $user->email }}</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -90,6 +90,8 @@
 
                                 {{$item->title}}
                                 @endif
+
+                                {{-- {{$item->title}} --}}
                             </a>
                             <br/>
                             <small>
@@ -98,21 +100,13 @@
                         </td>
                         <td>
 
-                            @if ($item->scope=='local' && $item->user_activity != null)
-                            @foreach ($item->user_activity as $user_activity )
-                            {{$user_activity->user->name}}
+                            @if ($item->user_activity->count() > 0)
 
-                            @endforeach
+                                Custom
 
-                            @else
+                                @else
 
-                            {{$item->scope}}
-                            @endif
-
-                            @if ($item->scope=='global' && $item->user_activity->count() > 0)
-                            <small>
-                                :Edited for some users
-                            </small>
+                                {{$item->scope}}
                                 @endif
                             {{-- <ul class="list-inline">
                                 <li class="list-inline-item">
@@ -148,21 +142,21 @@
                             <span class="badge badge-success">Success</span>
                         </td> --}}
                         <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+                            <a class="btn btn-primary btn-sm" href="{{route('admin.user.activity.view')}}?activity_id={{$item->id}}&user_id={{ $user->id}}">
                                 <i class="fas fa-folder">
                                 </i>
-                                View
+                                Edit Activity For User
                             </a>
                             <a class="btn btn-info btn-sm" href="{{route('admin.edit.activity.view',  $item->id)}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
-                                Edit
+                                Edit Activity For Everyone
                             </a>
 
                             <a class="btn btn-danger btn-sm" href="{{route('admin.activity.delete', $item->id)}}" onclick="return confirm('Are you sure you want to delete this Activity?');">
                                 <i class="fas fa-trash">
                                 </i>
-                                Delete
+                                Delete Activity For Everyone
                             </a>
                         </td>
                     </tr>

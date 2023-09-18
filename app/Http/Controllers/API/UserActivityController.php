@@ -8,7 +8,8 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
-use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Contracts\Database\Query\Builder;
+//use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class UserActivityController extends Controller
 {
