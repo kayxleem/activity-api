@@ -72,9 +72,9 @@
                   </div>
                   <div class="form-group">
                     <label>Date:</label>
-                      <div class="input-group date" id="activitydate" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" data-target="#activitydate" name="activity_date"/>
-                          <div class="input-group-append" data-target="#activitydate" data-toggle="datetimepicker">
+                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="activity_date"/>
+                          <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
                       </div>
