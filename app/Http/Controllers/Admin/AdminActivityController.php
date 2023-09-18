@@ -28,7 +28,7 @@ class AdminActivityController extends Controller
             $filename = time() . '.' . $request->image->extension();
             $image->move(public_path('uploads'), $filename);
 
-            $image = $filename;
+            $image = config('app.url').'/uploads/'.$filename;
         }
         $expense = Activity::create([
             'title' => $request->title,
