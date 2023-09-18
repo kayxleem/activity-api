@@ -56,14 +56,31 @@
                     </a>
                 </li>
 
+
                 <li class="nav-item">
-                    <a href="{{ url('admin/dashboard')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Activities
-                        </p>
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-book"></i>
+                      <p>
+                        Activities
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
                     </a>
-                </li>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ url('admin/addActivity') }}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Add Activities</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ url('admin/dashboard')}}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>View Activities</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
 
                   <li class="nav-item">
                     <a href="{{ url('admin/dashboard')}}" class="nav-link">
