@@ -93,6 +93,8 @@
     <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+
+    <script src="../../plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
     <!-- AdminLTE for demo purposes -->
 
     <!-- Page specific script -->
@@ -230,5 +232,10 @@
       }
       // DropzoneJS Demo Code End
     </script>
+    <script>
+        $(function () {
+          bsCustomFileInput.init();
+        });
+        </script>
     </body>
     </html>
