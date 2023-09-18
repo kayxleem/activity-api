@@ -44,9 +44,14 @@ Route::prefix('/admin')->group(function ($route) {
     Route::middleware('admin')->group(function(){
         //Route::get('/dashboard',  [Admincontroller::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/dashboard',  [AdminActivityController::class, 'getAllActivities'])->name('admin.dashboard');
+
         Route::get('/users',  [AdminUserController::class, 'users'])->name('admin.users.show');
 
-        Route::get('/createActivity',  [AdminActivityController::class, 'createActivityView'])->name('admin.create.activity.view');
+        Route::get('/addActivity',  [AdminActivityController::class, 'addActivityView'])->name('admin.create.activity.view');
+        Route::post('/addActivity',  [AdminActivityController::class, 'addActivity'])->name('admin.add.activity');
+        Route::get('/editActivity/{id}',  [AdminActivityController::class, 'createActivityView'])->name('admin.edit.activity.view');
+        Route::post('/editActivity/{id}',  [AdminActivityController::class, 'createActivityView'])->name('admin.edit.activity');
+        Route::delete('/addActivity',  [AdminActivityController::class, 'createActivityView'])->name('admin.delete.activity');
         //Route::get('/activities',  [AdminActivityController::class, 'getAllActivities'])->name('admin.activities')->middleware('admin');
     });
 

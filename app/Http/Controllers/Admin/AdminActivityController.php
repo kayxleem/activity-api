@@ -8,13 +8,47 @@ use App\Http\Controllers\Controller;
 
 class AdminActivityController extends Controller
 {
-    public function createActivityView(Request $request)
+    public function addActivityView(Request $request)
     {
         return view('admin.addactivity');
     }
 
-    public function createActivity(Request $request)
+    public function addActivity(Request $request)
     {
+        //dd($request->all());
+        $activittField = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'activity_date' => 'required',
+            'image' => 'required',
+        ]);
+
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $filename = time() . '.' . $request->image->extension();
+            $image->move(public_path('uploads'), $filename);
+
+            $image = $filename;
+        }
+        $expense = Activity::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'activity_date' => $request->activity_date,
+            'image' => isset($image) ? $image : '',
+        ]);
+
+        $expense->save();
+        return redirect()->route('admin.dashboard')->with('status', 'Activity added Successfully!');
+    }
+
+    public function editActivityView(Request $request)
+    {
+        return view('admin.editactivity');
+    }
+
+    public function editActivity(Request $request)
+    {
+        dd($request->all());
         $activity = Activity::create($request->all());
         return $activity;
         //return response()->json($activity, Response::HTTP_CREATED);

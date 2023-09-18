@@ -29,39 +29,61 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Quick Example</h3>
+                <h3 class="card-title">Add Activity</h3>
               </div>
               <!-- /.card-header -->
+              @if ($errors->any())
+
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+
+                        @endforeach
+                    </div>
+                @endif
+
+                @if(Session::has('error'))
+
+                <div class="col-md-12">
+                    <div class="card bg-danger">
+                      {{-- <div class="card-header">
+                        <h3 class="card-title">Error</h3>
+                      </div> --}}
+                      <div class="card-body">
+                        {{Session::get('error')}}
+
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                @endif
               <!-- form start -->
-              <form>
+              <form method="post" action="{{ route('admin.add.activity') }}" enctype="multipart/form-data">@csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter text">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter text" name="title" required>
                   </div>
                   <!-- textarea -->
                   <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" required></textarea>
                   </div>
                   <div class="form-group">
                     <label>Date:</label>
-                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                          <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                      <div class="input-group date" id="activitydate" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" data-target="#activitydate" name="activity_date"/>
+                          <div class="input-group-append" data-target="#activitydate" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                           </div>
                       </div>
                   </div>
                   <div class="form-group">
-                    <label for="exampleDescription">Description</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Description">
-                  </div>
-                  <div class="form-group">
                     <label for="exampleInputFile">image</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                         <label class="custom-file-label" for="exampleInputimage">Choose file</label>
                       </div>
                       <div class="input-group-append">

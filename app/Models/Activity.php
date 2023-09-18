@@ -15,6 +15,10 @@ class Activity extends Model
 
     protected $guarded= [];
 
+    protected $casts = [
+        'activity_date' => 'datetime',
+    ];
+
     public function user_activity():HasMany
     {
         return $this->hasMany(UserActivity::class, 'activity_id', 'id');
