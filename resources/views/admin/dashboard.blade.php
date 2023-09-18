@@ -37,6 +37,13 @@
               </button>
             </div>
           </div>
+          @if ($status)
+
+                    <div class="alert alert-success">
+
+                            {{ $status }}
+                    </div>
+                @endif
           <div class="card-body p-0">
             <table class="table table-striped projects">
                 <thead>

@@ -50,7 +50,7 @@ Route::prefix('/admin')->group(function ($route) {
         Route::get('/addActivity',  [AdminActivityController::class, 'addActivityView'])->name('admin.create.activity.view');
         Route::post('/addActivity',  [AdminActivityController::class, 'addActivity'])->name('admin.add.activity');
         Route::get('/editActivity/{id}',  [AdminActivityController::class, 'editActivityView'])->name('admin.edit.activity.view');
-        Route::post('/editActivity/{id}',  [AdminActivityController::class, 'editActivity'])->name('admin.edit.activity');
+        Route::post('/editActivity/{id}',  [AdminActivityController::class, 'editActivity'])->name('admin.activity.edit');
         Route::get('/deleteActivity/{id}',  [AdminActivityController::class, 'destroy'])->name('admin.activity.delete');
         //Route::get('/activities',  [AdminActivityController::class, 'getAllActivities'])->name('admin.activities')->middleware('admin');
     });

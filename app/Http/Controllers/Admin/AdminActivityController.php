@@ -75,10 +75,26 @@ class AdminActivityController extends Controller
     public function editActivity(Request $request, $id)
     {
         $activity = Activity::find($id);
+
         if (!$activity) {
             return redirect()->route('admin.dashboard')->with('status', 'Activity does not exist');
         } else {
-            $activity->update($request->all());
+            if ($request->has('image')) {
+                $image = $request->file('image');
+                $filename = time() . '.' . $request->image->extension();
+                $image->move(public_path('uploads'), $filename);
+
+                $image = config('app.url').'/uploads/'.$filename;
+            }
+
+            //$activity->update($request->all());
+
+            $activity->update([
+                'title' => $request->title ?? $activity->title,
+                'description' => $request->description ?? $activity->description,
+                'activity_date' => $request->activity_date ?? $activity->activity_date,
+                'image' => $image ?? $activity->image
+            ]);
             return view('admin.editactivity', compact('activity'))->with('status', 'Activity Updated');
         }
     }
