@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
 class AdminActivityController extends Controller
@@ -35,7 +36,13 @@ class AdminActivityController extends Controller
             'activity_date' => 'required',
             'image' => 'required',
         ]);
+        //check if daily activity not exceeded
+        $dayActivities = Activity::where('activity_date', 'LIKE', '%' . Carbon::parse($request->activity_date)->toDateString() . '%')
+        ->where('scope', 'global')->count();
 
+        if($dayActivities >=4){
+            return redirect()->route('admin.dashboard')->with('error', 'Activity for day is already at maximum amount (4)');
+        }
         if ($request->has('image')) {
             $image = $request->file('image');
             $filename = time() . '.' . $request->image->extension();
