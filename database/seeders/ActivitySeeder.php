@@ -15,9 +15,6 @@ class ActivitySeeder extends Seeder
     public function run(): void
     {
         Activity::factory(3)->create();
-        Activity::factory(1)->create([
-            'scope' => 'local'
-        ]);
         // Activity::cursor()
         //     ->each(function ($activity) {
         //         UserActivity::factory()

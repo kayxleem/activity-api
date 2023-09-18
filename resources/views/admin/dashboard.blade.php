@@ -131,12 +131,13 @@
                                 </i>
                                 View
                             </a>
-                            <a class="btn btn-info btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+                            <a class="btn btn-info btn-sm" href="{{route('admin.edit.activity.view',  $item->id)}}">
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="{{route('admin.dashboard')}}/{{$item->id}}">
+
+                            <a class="btn btn-danger btn-sm" href="{{route('admin.activity.delete', $item->id)}}" onclick="return confirm('Are you sure you want to delete this Activity?');">
                                 <i class="fas fa-trash">
                                 </i>
                                 Delete
