@@ -14,7 +14,7 @@ use Illuminate\Contracts\Database\Query\Builder;
 class UserActivityController extends Controller
 {
     public function __invoke(Request $request){
-        $activity = QueryBuilder::for(Activity::class)
+        $activities = QueryBuilder::for(Activity::class)
 
             ->whereHas('user_activity', function (Builder $query) {
                 $query->where('user_id', '=', auth()->user()->id);
@@ -30,8 +30,20 @@ class UserActivityController extends Controller
 
 
 
-        if ($activity->count() > 0) {
-            return response()->json($activity);
+        if ($activities->count() > 0) {
+            $userActivities= [];
+            foreach($activities as $activity){
+                if($activity->user_activity->count() > 0){
+                    $activity->title = $activity->user_activity[0]->title;
+                    $activity->image = $activity->user_activity[0]->image;
+                    $activity->description = $activity->user_activity[0]->description;
+                    $activity->user_activity = [];
+                    //dd($activity->title);
+                }
+                array_push($userActivities,$activity);
+            }
+
+            return response()->json($userActivities);
         } else {
             return response()->json(['status_code' => Response::HTTP_NOT_FOUND, 'status' => 'success', 'message' => 'No Activity found']);
         }
